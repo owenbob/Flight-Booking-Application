@@ -27,8 +27,18 @@ class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.getenv('PROD_DATABASE_URI')
 
 
-config_by_name = dict(
-    dev=DevelopmentConfig,
-    test=TestingConfig,
-    prod=ProductionConfig
-)
+class ConfigureApplication:
+    """Application."""
+
+    config_by_name = {
+        "development": "api.configuration.config.DevelopmentConfig",
+        "testing": "api.configuration.config.TestingConfig",
+        "production": "api.configuration.config.ProductionConfig"
+    }
+    app_environment = os.getenv("APP_ENVIRONMENT")
+
+    @classmethod
+    def set_config(cls):
+        """Set application configuration."""
+
+        return cls.config_by_name[cls.app_environment] 
