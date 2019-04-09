@@ -1,3 +1,4 @@
+import json
 from flask import jsonify, request
 from flask.views import MethodView
 
@@ -25,20 +26,19 @@ class Register(MethodView):
 
             # save user to database
             user.save(user)
-            return jsonify(
-                {
-                    "status": "Success",
-                    "message": "New user created successfully.",
-                    "details": "{}".format(user),
-                }), 201
+            data = {
+                "status": "Success",
+                "message": "New user created successfully.",
+                "details": "{}".format(user)
+            }
+            return jsonify(data), 201
 
         except AssertionError as error:
-            return jsonify(
-                {
+            error_data = {
                     "status": "Failure",
                     "Error": "{}".format(error)
                 }
-            ), 400
+            return jsonify(error_data), 400
 
 
 class Login(MethodView):
