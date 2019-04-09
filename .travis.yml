@@ -15,9 +15,9 @@ install:
 before_script:
   - sudo -u postgres createuser admin
   - sudo -u postgres createdb test
-  - python manager.py db init
-  - python manager.py db migrate
-  - python manager.py db upgrade
+  - python manage.py db init
+  - python manage.py db migrate
+  - python manage.py db upgrade
 
 # command to run tests
 script:
