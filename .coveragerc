@@ -1,0 +1,38 @@
+[run]
+# ignore test coverage for the following file or folders on run
+omit = 
+    *asyncio*
+    *concurrent*
+    *ctypes*
+    *encodings*
+    *html*
+    *http*
+    *multiprocessing*
+    *venv*
+    *decimal.py
+    *hmac.py
+    *mimetypes.py
+    *numbers.py
+    *stringprep.py
+    *uuid.py
+
+[report]
+# ignore test coverage for the following file or folders on report
+omit = 
+    *asyncio*
+    *concurrent*
+    *ctypes*
+    *encodings*
+    *html*
+    *http*
+    *multiprocessing*
+    *venv*
+    *decimal.py
+    *hmac.py
+    *mimetypes.py
+    *numbers.py
+    *stringprep.py
+    *uuid.py
+
+# show missed lines
+show_missing = True
