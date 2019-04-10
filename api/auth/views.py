@@ -1,7 +1,9 @@
-import json
+"""Registration and Login class views."""
+
 from flask import jsonify, request
 from flask.views import MethodView
 
+from api.auth.auth_utils import generate_user_token
 from api.users.models import Users
 
 
@@ -44,4 +46,22 @@ class Register(MethodView):
 class Login(MethodView):
     """ View to handle user login"""
     def post(self):
-        pass
+
+        data = request.get_json()
+
+        try:
+            user_token = generate_user_token(data)
+
+            data = {
+                "status": "Success",
+                "message": "Authentication token succesfully assigned",
+                "token": user_token.decode("UTF-8"),
+            }
+            return jsonify(data)
+
+        except AssertionError as error:
+            error_data = {
+                    "status": "Failure",
+                    "Error": "{}".format(error)
+                }
+            return jsonify(error_data), 400
