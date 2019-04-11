@@ -1,16 +1,22 @@
+"""Flight class view."""
+
 from flask.views import MethodView
+
+from api.auth.auth_utils import token_needed
 
 
 class Flight(MethodView):
     """ View to handle Flight functionality."""
-    def get(self):
+    decorators = [token_needed]
+
+    def get(self, current_user):
         pass
 
-    def post(self):
+    def post(self, current_user):
         pass
 
-    def put(self):
+    def put(self, current_user):
         pass
 
-    def delete(self):
+    def delete(self, current_user):
         pass

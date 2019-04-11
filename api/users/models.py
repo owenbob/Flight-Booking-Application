@@ -25,9 +25,10 @@ class Users(BaseModel):
     profile_pic = db.Column(db.String(80), nullable=True)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
 
-    def check_password(self, password):
-        """Unhash password for easy reading."""
-        return check_password_hash(password)
+    @staticmethod
+    def check_password(user_password, provided_password):
+        """Verify hashed password"""
+        return check_password_hash(user_password, provided_password)
 
     def __repr__(self):
         """Return a string representation for the model."""
