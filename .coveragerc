@@ -14,6 +14,7 @@ omit =
     *mimetypes.py
     *numbers.py
     *stringprep.py
+    *typing.py
     *uuid.py
 
 [report]
@@ -32,6 +33,7 @@ omit =
     *mimetypes.py
     *numbers.py
     *stringprep.py
+    *typing.py
     *uuid.py
 
 # show missed lines

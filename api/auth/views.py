@@ -38,7 +38,7 @@ class Register(MethodView):
         except AssertionError as error:
             error_data = {
                     "status": "Failure",
-                    "Error": "{}".format(error)
+                    "error": "{}".format(error)
                 }
             return jsonify(error_data), 400
 
@@ -62,6 +62,6 @@ class Login(MethodView):
         except AssertionError as error:
             error_data = {
                     "status": "Failure",
-                    "Error": "{}".format(error)
+                    "error": "{}".format(error)
                 }
-            return jsonify(error_data), 400
+            return jsonify(error_data), 401

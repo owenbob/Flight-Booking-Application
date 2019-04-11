@@ -41,4 +41,4 @@ class ConfigureApplication:
     def set_config(cls):
         """Set application configuration."""
 
-        return cls.config_by_name[cls.app_environment] 
+        return cls.config_by_name[cls.app_environment]

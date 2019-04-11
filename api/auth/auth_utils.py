@@ -3,22 +3,24 @@
 import datetime
 import jwt
 
+from flask import jsonify, request
+from functools import wraps
+
 from api import app
 from api.users.models import Users
 
 
 def generate_user_token(data):
+    """Utility function to generate a token for a user."""
 
     # Assign request body entities
-    email = data.get("email")
-    password = data.get("password")
+    email = data.get("email", None)
+    password = data.get("password", None)
 
     # Validate data
-    if not (email or password):
+    if email is None or password is None:
         raise AssertionError("Please provide email and password.")
-
     # check if email is for a registered user
-
     user = Users.query.filter(Users.email == email).first()
 
     if not user:
@@ -34,10 +36,33 @@ def generate_user_token(data):
 
     token = jwt.encode(
         {
-            "email": user.id,
+            "user_id": user.id,
             "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=50)
             },
         app.config["SECRET_KEY"],
         algorithm='HS256'
     )
     return token
+
+
+def token_needed(func):
+    """Decorator to protect routes."""
+    @wraps(func)
+    def decorated(*args, **kwargs):
+        # check headers for token
+        token = request.headers.get("Token", None)
+        if not token:
+            data = {"message": "Please provide authentication token"}
+            return jsonify(data), 401
+
+        # Decode token
+        try:
+            data = jwt.decode(token, app.config["SECRET_KEY"], "HS256")
+            current_user = Users.query.filter(Users.id == data["user_id"]).first() # noqa E501
+            # kwargs["current_user"] = current_user
+
+        except Exception:
+            data = {"message": "Invalid token"}
+            return jsonify(data), 401
+        return func(current_user, *args, **kwargs)
+    return decorated
