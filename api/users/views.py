@@ -1,7 +1,7 @@
 from flask.views import MethodView
 
 
-class Users(MethodView):
+class UsersView(MethodView):
     """ View to handle user functionality."""
     def get(self):
         pass

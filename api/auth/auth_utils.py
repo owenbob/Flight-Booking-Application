@@ -59,8 +59,32 @@ def token_needed(func):
         try:
             data = jwt.decode(token, app.config["SECRET_KEY"], "HS256")
             current_user = Users.query.filter(Users.id == data["user_id"]).first() # noqa E501
-            # kwargs["current_user"] = current_user
 
+        except Exception:
+            data = {"message": "Invalid token"}
+            return jsonify(data), 401
+        return func(current_user, *args, **kwargs)
+    return decorated
+
+
+# is_admin decorator
+def is_admin(func):
+    """Decorator to check if the user has admin rights."""
+    @wraps(func)
+    def decorated(*args, **kwargs):
+        # check headers for token
+        token = request.headers.get("Token", None)
+        if not token:
+            data = {"message": "Please provide authentication token."}
+            return jsonify(data), 401
+
+        # Decode token
+        try:
+            data = jwt.decode(token, app.config["SECRET_KEY"], "HS256")
+            current_user = Users.query.filter(Users.id == data["user_id"]).first() # noqa E501
+            if current_user.is_admin is False:
+                data = {"message": "You do not have permissions to carry out this operation."} # noqa E501
+                return jsonify(data), 403
         except Exception:
             data = {"message": "Invalid token"}
             return jsonify(data), 401
