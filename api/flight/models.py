@@ -24,6 +24,7 @@ class Flight(BaseModel):
     seats = db.relationship(
         'Seats',
         backref='person',
+        uselist=False,
         lazy=True,
         passive_deletes=True
     )
