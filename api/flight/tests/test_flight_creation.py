@@ -6,7 +6,7 @@ from api.flight.tests.mixin import FlightAbstractClass
 
 class FlightCreationTestCase(FlightAbstractClass):
     """TestCase for flight creation."""
-    def test_flight_creation_is_sucessfull(self):
+    def test_flight_creation_is_successfull(self):
         """Test that an admin succefully creates a flight."""
         # grant user admin rights
         self.test_user_one.is_admin = True

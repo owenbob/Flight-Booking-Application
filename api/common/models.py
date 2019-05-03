@@ -21,7 +21,7 @@ class BaseModel(db.Model):
         default=str(uuid.uuid4())
     )
     created_at = db.Column(db.DateTime, nullable=False, default=time_utility())
-    Updated_at = db.Column(db.DateTime, nullable=False, default=time_utility())
+    updated_at = db.Column(db.DateTime, nullable=False, default=time_utility(), onupdate=time_utility())  # noqa: E501
 
     def save(self, obj):
         """Method to save values to the database."""

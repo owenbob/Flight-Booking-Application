@@ -21,3 +21,5 @@ class BookingAbstractClass(FlightAbstractClass):
             flight_id=self.test_flight.id
         )
         self.test_flight_seats.save(self.test_flight_seats)
+        self.booking_creation_body = {"seats_to_book": 3}
+        self.create_booking_url = "/v1/bookings/{}".format(self.test_flight.id)
