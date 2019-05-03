@@ -25,6 +25,7 @@ class Users(BaseModel):
     password_hash = db.Column(db.String(150), nullable=False)
     profile_pic = db.Column(db.String(80), nullable=True)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    flight_booking = db.relationship('Booking')
 
     @staticmethod
     def check_password(user_password, provided_password):

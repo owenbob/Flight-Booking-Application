@@ -23,7 +23,7 @@ class Flight(BaseModel):
     destination = db.Column(db.String(50), nullable=False)
     seats = db.relationship(
         'Seats',
-        backref='person',
+        backref='flight',
         uselist=False,
         lazy=True,
         passive_deletes=True
@@ -54,9 +54,13 @@ class Flight(BaseModel):
         return destination
 
 
+# Context-Sensitive default function
+def available_seats_default(context):
+    return context.get_current_parameters()['number_of_seats']
+
+
 class Seats(BaseModel):
     """Seats model."""
-
     __tablename__ = "seats"
     id = db.Column(
         db.String(80),
@@ -65,8 +69,8 @@ class Seats(BaseModel):
         default=str(uuid.uuid4())
     )
     number_of_seats = db.Column(db.Integer, nullable=False)
-    booked_seats = db.Column(db.Integer, nullable=True)
-    available_seats = db.Column(db.Integer, nullable=True)
+    booked_seats = db.Column(db.Integer, nullable=False, default=0)
+    available_seats = db.Column(db.Integer, nullable=False, default=available_seats_default)  # noqa E501
     flight_id = db.Column(db.String, db.ForeignKey('flight.id', ondelete="CASCADE"), nullable=False) # noqa E501
 
     @validates("number_of_seats")
