@@ -5,13 +5,16 @@ omit =
     *concurrent*
     *ctypes*
     *encodings*
+    *email*
     *html*
     *http*
     *multiprocessing*
+    *unittest*
     *venv*
     *decimal.py
     *hmac.py
     *mimetypes.py
+    *netrc.py
     *numbers.py
     *stringprep.py
     *typing.py
@@ -24,13 +27,16 @@ omit =
     *concurrent*
     *ctypes*
     *encodings*
+    *email*
     *html*
     *http*
     *multiprocessing*
+    *unittest*
     *venv*
     *decimal.py
     *hmac.py
     *mimetypes.py
+    *netrc.py
     *numbers.py
     *stringprep.py
     *typing.py
