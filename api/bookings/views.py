@@ -12,6 +12,7 @@ from api.bookings.utils import (
     view_flight,
 )
 from api.common.errors import NotFound
+from api.emails.mail_helper import send_mail
 from api.flight.models import Flight
 
 
@@ -66,6 +67,9 @@ class FlightBookingView(MethodView):
 
             # decreament number of seats available
             set_available_seats(flight.seats, seats_to_book)
+
+            # Send  booking confirmation
+            send_mail(current_user, seats_to_book, flight)
 
             data = {
                 "status": "Success",

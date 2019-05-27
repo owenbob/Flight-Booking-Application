@@ -1,12 +1,15 @@
 """Module to host Booking creation tests."""
 
+from unittest.mock import patch
+
 from api.bookings.tests.mixin import BookingAbstractClass
 
 
 class BookingCreationTestCase(BookingAbstractClass):
     """Testcase for booking creation."""
 
-    def test_booking_is_created_successfully(self):
+    @patch('api.bookings.views.send_mail')
+    def test_booking_is_created_successfully(self, send_mail_mock):
         """test that a flight is booked."""
 
         resp = self.make_flight_request(
@@ -16,6 +19,7 @@ class BookingCreationTestCase(BookingAbstractClass):
             headers=self.headers,
             data=self.booking_creation_body
         )
+        self.assertTrue(send_mail_mock.called)
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(resp.json.get("status"), "Success")
         self.assertEqual(resp.json.get("message"), "New Booking created successfully.")  # noqa: E501

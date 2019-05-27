@@ -16,6 +16,7 @@ omit =
     *mimetypes.py
     *netrc.py
     *numbers.py
+    *smtplib.py
     *stringprep.py
     *typing.py
     *uuid.py
@@ -38,6 +39,7 @@ omit =
     *mimetypes.py
     *netrc.py
     *numbers.py
+    *smtplib.py
     *stringprep.py
     *typing.py
     *uuid.py
