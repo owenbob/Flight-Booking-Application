@@ -8,6 +8,7 @@ omit =
     *email*
     *html*
     *http*
+    *logging*
     *multiprocessing*
     *unittest*
     *venv*
@@ -31,6 +32,7 @@ omit =
     *email*
     *html*
     *http*
+    *logging*
     *multiprocessing*
     *unittest*
     *venv*

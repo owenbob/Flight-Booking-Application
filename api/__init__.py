@@ -3,6 +3,7 @@
 from flask import Flask
 
 from api.configuration.config import ConfigureApplication
+from api.celery.celery_config import make_celery
 
 # Instantiate flask application
 app = Flask(__name__)
@@ -10,6 +11,8 @@ app = Flask(__name__)
 # Set application environment configuration
 app.config.from_object(ConfigureApplication.set_config())
 
+# Celery  wrap
+celery = make_celery(app)
 
 # Set up application URLs
 from api.auth.views import Register, Login # noqa E402
