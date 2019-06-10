@@ -27,7 +27,7 @@ class BookingCreationTestCase(BookingAbstractClass):
     def test_booking_creation_fails(self):
         """test flight booking fails."""
         with self.subTest("With wrong flight id"):
-            url = "/v1/bookings/296cac-99a0-4d9f-b748-bbceecc21"
+            url = "/v1/bookings/296cac-99a0-4d9f-b748-bbceecc21/"
 
             resp = self.make_flight_request(
                 operation="post",

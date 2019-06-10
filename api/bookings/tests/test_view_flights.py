@@ -21,7 +21,7 @@ class ViewFlightsTestCase(BookingAbstractClass):
 
     def test_retrieve_a_flight(self):
         """test that a flight can be retrieved."""
-        url = "/v1/bookings/{}".format(self.test_flight.id)
+        url = "/v1/bookings/{}/".format(self.test_flight.id)
         resp = self.make_flight_request(
             operation="get",
             url=url,
@@ -33,7 +33,7 @@ class ViewFlightsTestCase(BookingAbstractClass):
 
     def test_flight_retrieval_is_unsuccessful(self):
         """Test that retrieval fails with inaccurate flight id."""
-        url = "/v1/bookings/159955aa-4bd4-4d7b-b909-ca7173f"
+        url = "/v1/bookings/159955aa-4bd4-4d7b-b909-ca7173f/"
         resp = self.make_flight_request(
             operation="get",
             url=url,

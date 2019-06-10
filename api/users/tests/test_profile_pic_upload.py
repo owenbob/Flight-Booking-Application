@@ -24,7 +24,7 @@ class UserProfilePicTestCase(UserAbstractClass):
         )
 
         self.assertEqual(resp.status_code, 201)
-        self.assertEqual(resp.json.get("Profile Picture Url"), MOCK_URL)
+        self.assertEqual(resp.json.get("profile_picture_url"), MOCK_URL)
 
         # check that the profile_pic is saved for the user
         test_user = Users.query.filter(Users.id == self.test_user_one.id).first()  # noqa: E501
