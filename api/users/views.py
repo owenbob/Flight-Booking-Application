@@ -23,7 +23,7 @@ class UserProfilePicView(MethodView):
             url = upload_profile_picture(image)
             save_profile_picture(current_user, url)
 
-            return jsonify({"Profile Picture Url": url}), 201
+            return jsonify({"profile_picture_url": url}), 201
 
         except Exception:
             error_data = {"message": "Failed to upload file to bucket"}

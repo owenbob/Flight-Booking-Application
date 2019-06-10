@@ -11,9 +11,6 @@ class FlightView(MethodView):
     """ View to handle Flight functionality."""
     decorators = [is_admin]
 
-    def get(self, current_user):
-        pass
-
     def post(self, current_user):
         data = request.get_json()
         dept_time = data.get("departure_time")
@@ -46,9 +43,3 @@ class FlightView(MethodView):
                     "error": "{}".format(error)
                 }
             return jsonify(error_data), 400
-
-    def put(self, current_user):
-        pass
-
-    def delete(self, current_user):
-        pass

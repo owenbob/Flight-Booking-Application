@@ -25,12 +25,6 @@ class BookingView(MethodView):
         data = list_flights(query)
         return jsonify(data), 200
 
-    def put(self, current_user):
-        pass
-
-    def delete(self, current_user):
-        pass
-
 
 class FlightBookingView(MethodView):
     decorators = [token_needed]
