@@ -2,8 +2,14 @@
 from flask import request, jsonify
 from flask.views import MethodView
 
-from api.auth.auth_utils import token_needed
-from api.users.utils import upload_profile_picture, save_profile_picture
+from api.auth.auth_utils import token_needed, is_admin
+from api.bookings.models import Booking
+
+from api.users.utils import (
+    list_users,
+    upload_profile_picture,
+    save_profile_picture
+)
 
 
 class UserProfilePicView(MethodView):
@@ -32,14 +38,24 @@ class UserProfilePicView(MethodView):
 
 class UsersView(MethodView):
     """ View to handle user functionality."""
-    def get(self):
-        pass
+    decorators = [is_admin]
 
-    def post(self):
-        pass
+    def get(self, current_user, flight_id):
+        """List the users who have booked a certain flight."""
+        bookings = Booking.query.filter(Booking.flight_id == flight_id).all()
+        if bookings == []:
+            data = {
+                "message": "No bookings for flight {}".format(flight_id),
+                "recommendation": "Please ensure that the flight_id is valid"
+            }
+            return jsonify(data), 200
+
+        users = list_users(bookings)
+        data = {
+            "result": users,
+            "status": "Success"
+        }
+        return jsonify(data), 200
 
     def put(self):
-        pass
-
-    def delete(self):
         pass

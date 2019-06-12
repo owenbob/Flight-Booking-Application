@@ -17,6 +17,7 @@ class Booking(BaseModel):
     flight_id = db.Column(db.String(50), db.ForeignKey('flight.id'))
     flight = db.relationship('Flight')
     customer = db.Column(db.String(50), db.ForeignKey('users.id'))
+    user = db.relationship('Users')
     seats_to_book = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
