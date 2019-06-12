@@ -37,4 +37,4 @@ app.add_url_rule('/v1/bookings/<flight_id>/', view_func=FlightBookingView.as_vie
 app.add_url_rule('/v1/user/profile_picture/', view_func=UserProfilePicView.as_view("user_profile_picture")) # noqa E501
 
 # Users route
-app.add_url_rule('/v1/users/', view_func=UsersView.as_view("users"))
+app.add_url_rule('/v1/users/<flight_id>/', view_func=UsersView.as_view("users"))  # noqa: E501

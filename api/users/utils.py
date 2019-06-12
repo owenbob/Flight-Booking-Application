@@ -38,3 +38,19 @@ def save_profile_picture(current_user, url):
     # save profile_pic
     current_user.profile_pic = url
     current_user.save(current_user)
+
+
+def list_users(bookings):
+    """List view for users."""
+    return[view_user(booking.user) for booking in bookings]
+
+
+def view_user(user):
+    """reurn a dict ojb of a user."""
+    return {
+        "id": user.id,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
+        "email": user.email,
+        "profile_pic": user.profile_pic,
+    }
