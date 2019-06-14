@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# DS_store
+.DS_Store
+
+# Ignore Migrations
+migrations/
+
+# Google auth json file
+Flight Application-a35b43d1a64b.json
