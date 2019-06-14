@@ -5,12 +5,12 @@ jobs:
       - image: circleci/python:3
         environment:
           TEST_DATABASE_URI: ${TEST_DATABASE_URI}
-          APP_ENVIRONMENT: ${TESTING}
+          APP_ENVIRONMENT: "testing"
+          SECRET_KEY: ${SECRET_KEY}
 
       - image: circleci/postgres:9.6-alpine
         environment:
-          SECRET_KEY: ${SECRET_KEY}
-          POSTGRES_USER: ${POSTGRES_USER_TEST}
+          POSTGRES_USER: root
           POSTGRES_DB: ${POSTGRES_DB_TEST}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_TEST}
 
