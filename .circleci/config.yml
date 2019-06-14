@@ -75,7 +75,7 @@ jobs:
           command: |  # this command is framework-dependent and may vary
             bash .circleci/setup-heroku.sh 
             heroku git:remote -a $HEROKU_APP_NAME
-            git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git devlop
+            git push --force https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git dev
             sleep 5  # sleep for 5 seconds to wait for dynos
             heroku restart
 workflows:
@@ -88,4 +88,4 @@ workflows:
             - run-tests-job
           filters:
             branches:
-              only: develop
+              only: dev
