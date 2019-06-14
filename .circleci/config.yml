@@ -9,7 +9,7 @@ jobs:
           APP_ENVIRONMENT: "testing"
           
              
-      - image: circleci/postgres
+      - image: circleci/postgres:9.6-alpine
         environment:
           SECRET_KEY: ${SECRET_KEY}
           POSTGRES_USER: ${POSTGRES_USER_TEST}
