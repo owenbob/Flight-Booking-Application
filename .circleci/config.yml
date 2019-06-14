@@ -35,6 +35,8 @@ jobs:
           command: |
             echo ${TEST_DATABASE_URI}
             echo ${POSTGRES_USER}
+            echo ${POSTGRES_DB}
+            echo ${POSTGRES_PASSWORD}
 
       - run:
           name: install dependencies
