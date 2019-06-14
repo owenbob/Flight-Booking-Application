@@ -1,14 +1,7 @@
 version: 2.1
 jobs:
-  build-job:
+  test-db-setup:
     docker:
-
-      - image: circleci/python
-        environment:
-          TEST_DATABASE_URI: ${TEST_DATABASE_URI}
-          APP_ENVIRONMENT: "testing"
-          
-             
       - image: circleci/postgres:9.6-alpine
         environment:
           SECRET_KEY: ${SECRET_KEY}
@@ -16,16 +9,23 @@ jobs:
           POSTGRES_DB: ${POSTGRES_DB_TEST}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_TEST}
 
+    steps:
+      - run: # test what branch we're on.
+          name: "Set Test Database"
+          command: sudo -u postgres createuser ${POSTGRES_USER}
+
+  run-test:
+    docker:
+
+      - image: circleci/python
+        environment:
+          TEST_DATABASE_URI: ${TEST_DATABASE_URI}
+          APP_ENVIRONMENT: "testing"
+
     working_directory: ~/Flight-Boooking-Application
 
     steps:
       - checkout
-      - run: # test what branch we're on.
-          name: "What env am I on?"
-          command: |
-            echo ${POSTGRES_USER_TEST}
-            
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -84,7 +84,11 @@ workflows:
   version: 2.1
   build-deploy:
     jobs:
-      - build-job
+      - test-db-setup
+      - run-tests:
+          requires:
+            - test-db-setup
+
       # - deploy-job:  # only deploy when master successfully builds
       #     requires:
       #       - build-job
