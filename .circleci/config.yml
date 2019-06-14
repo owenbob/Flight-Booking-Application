@@ -12,7 +12,7 @@ jobs:
     steps:
       - run: # test what branch we're on.
           name: "Set Test Database"
-          command: psql -u postgres createuser ${POSTGRES_USER}
+          command: psql -U postgres createuser ${POSTGRES_USER}
 
   run-tests:
     docker:
