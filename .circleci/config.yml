@@ -14,7 +14,7 @@ jobs:
           name: "Set Test Database"
           command: sudo -u postgres createuser ${POSTGRES_USER}
 
-  run-test:
+  run-tests:
     docker:
 
       - image: circleci/python
