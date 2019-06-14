@@ -32,7 +32,9 @@ jobs:
 
       - run: # test what branch we're on.
           name: "What env am I on?"
-          command: echo ${TEST_DATABASE_URI}
+          command: |
+            echo ${TEST_DATABASE_URI}
+            echo ${POSTGRES_USER}
 
       - run:
           name: install dependencies
