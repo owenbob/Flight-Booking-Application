@@ -56,6 +56,3 @@ class UsersView(MethodView):
             "status": "Success"
         }
         return jsonify(data), 200
-
-    def put(self):
-        pass

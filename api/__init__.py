@@ -33,8 +33,6 @@ app.add_url_rule('/v1/flight/', view_func=FlightView.as_view("flights"))
 app.add_url_rule('/v1/bookings/', view_func=BookingView.as_view("bookings"))
 app.add_url_rule('/v1/bookings/<flight_id>/', view_func=FlightBookingView.as_view("booking_flight")) # noqa E501
 
-# Uploading User profile
-app.add_url_rule('/v1/user/profile_picture/', view_func=UserProfilePicView.as_view("user_profile_picture")) # noqa E501
 
 # Uploading User profile
 app.add_url_rule('/v1/user/profile_picture/', view_func=UserProfilePicView.as_view("user_profile_picture")) # noqa E501
