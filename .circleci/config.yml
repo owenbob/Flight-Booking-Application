@@ -16,12 +16,15 @@ jobs:
           POSTGRES_DB: ${POSTGRES_DB_TEST}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_TEST}
 
-          
-
     working_directory: ~/Flight-Boooking-Application
 
     steps:
       - checkout
+      - run: # test what branch we're on.
+          name: "What env am I on?"
+          command: |
+            echo ${POSTGRES_USER_TEST}
+            
 
       # Download and cache dependencies
       - restore_cache:
@@ -29,14 +32,6 @@ jobs:
           - v1-dependencies-{{ checksum "requirements.txt" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
-      - run: # test what branch we're on.
-          name: "What env am I on?"
-          command: |
-            echo ${TEST_DATABASE_URI}
-            echo ${POSTGRES_USER}
-            echo ${POSTGRES_DB}
-            echo ${POSTGRES_PASSWORD}
 
       - run:
           name: install dependencies
