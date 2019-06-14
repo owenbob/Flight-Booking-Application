@@ -5,16 +5,16 @@ jobs:
 
       - image: circleci/python
         environment:
-          TEST_DATABASE_URI: $(TEST_DATABASE_URI)
-          APP_ENVIRONMENT: $(TESTING)
+          TEST_DATABASE_URI: ${TEST_DATABASE_URI}
+          APP_ENVIRONMENT: ${TESTING}
           
              
       - image: circleci/postgres
         environment:
-          SECRET_KEY: $(SECRET_KEY)
-          POSTGRES_USER: $(POSTGRES_USER_TEST)
-          POSTGRES_DB: $(POSTGRES_DB_TEST)
-          POSTGRES_PASSWORD: $(POSTGRES_PASSWORD_TEST)
+          SECRET_KEY: ${SECRET_KEY}
+          POSTGRES_USER: ${POSTGRES_USER_TEST}
+          POSTGRES_DB: ${POSTGRES_DB_TEST}
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_TEST}
 
           
 
