@@ -9,13 +9,13 @@ jobs:
           POSTGRES_DB: ${POSTGRES_DB_TEST}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_TEST}
 
-    steps:
-      - run: # test what branch we're on.
-          name: "Set Test Database"
-          command: | 
-            psql postgres
-            \du
-            \q
+    # steps:
+    #   - run: # test what branch we're on.
+    #       name: "Set Test Database"
+    #       command: | 
+    #         psql postgres
+    #         \du
+    #         \q
 
   run-tests:
     docker:
