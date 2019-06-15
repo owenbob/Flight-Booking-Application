@@ -5,12 +5,12 @@
 ---
 
 ## Product overview 
- Yummy-Recipes-API-Django-GraphQl is a simple  API built with  Django and GraphQl.  Enables you to register a user,login. It aslo provides CRUD functionality for categories and recipes assigned to these categories. 
+Flight-Booking-Application is a simple REST application built to enable a user to register, login  and book available flights. The available flights are created by the admin user of the application. After a booking has been made, the platform  sends you a confirmatory email and a timely reminder of your flight a day before the flight. The system enables you to also update  your profile picture as to whatever image you might so wish. 
 
 ## Development set up
 - Check that python 3, pip, virtualenv and postgres are installed
 
-- Clone  Yummy-Recipes-API-Django-GraphQl  repo and cd into it
+- Clone  Flight-Booking-Application  repo and cd into it
     ```
     https://github.com/owenbob/Flight-Booking-Application.git
     ```
@@ -26,12 +26,8 @@
     ```
     pip install -r requirements.txt
     ```
-- Create Application environment variables and save them in .env file
-    ```
-    export DBNAME='Your Database name'
-    export DBPASSWORD='Your Database password'
-    export DBUSER='Your Database user'
-    ```
+- Create Application environment variables and save them in .env file.
+- Check .env_example for more clarity and enviroment variables to export.
 - Run command
     ```
     source .env
