@@ -3,7 +3,7 @@ info:
   description: "This is a a simple flask api to enable flight booking "
   version: "1.0.0"
   title: "Flight Booking Application"
-host: "host"
+host: "https://flightbooking-api.herokuapp.com/"
 basePath: "/v1/"
 tags:
 - name: "auth"
