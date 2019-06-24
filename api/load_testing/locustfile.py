@@ -60,7 +60,7 @@ class UserBehavior(TaskSet):
             "departure_from": "nairobi International Airport kennya",
             "departure_time": "2019-05-30 00:00",
             "destination": "Newark Airport New York",
-            "number_of_seats": 1070
+            "number_of_seats": 10000
         }
 
         self.headers = {
@@ -86,7 +86,7 @@ class UserBehavior(TaskSet):
             'token': token
             }
         self.client.post(
-                "v1/bookings/c6571979-8082-4823-9b78-7be9a96b47ca/",
+                "v1/bookings/0ff4fcb4-6f46-47f7-a346-5b20630075f7/",
                 data=json.dumps(self.booking_data),
                 headers=self.headers,
                 name="Flight Booking"
