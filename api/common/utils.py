@@ -1,9 +1,13 @@
 """Application Utility Functions."""
 
 import datetime
-
+import uuid
 
 FORMAT = "%d-%m-%Y %H:%M:%S"
+
+
+def generate_id():
+    return str(uuid.uuid4())
 
 
 def time_utility():

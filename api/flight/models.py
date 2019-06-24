@@ -1,11 +1,10 @@
 """Flight and FlightSeats models module."""
 import re
-import uuid
 
 from sqlalchemy.orm import validates
 
 from api.common.models import BaseModel, db
-from api.common.utils import validate_entity
+from api.common.utils import validate_entity, generate_id
 
 
 class Flight(BaseModel):
@@ -16,7 +15,7 @@ class Flight(BaseModel):
         db.String(80),
         nullable=False,
         primary_key=True,
-        default=str(uuid.uuid4())
+        default=generate_id
     )
     departure_time = db.Column(db.DateTime, nullable=False)
     departure_from = db.Column(db.String(50), nullable=False)
@@ -66,7 +65,7 @@ class Seats(BaseModel):
         db.String(80),
         nullable=False,
         primary_key=True,
-        default=str(uuid.uuid4())
+        default=generate_id
     )
     number_of_seats = db.Column(db.Integer, nullable=False)
     booked_seats = db.Column(db.Integer, nullable=False, default=0)

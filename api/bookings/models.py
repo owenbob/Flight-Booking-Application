@@ -1,8 +1,7 @@
 """Booking model module"""
 
-import uuid
-
 from api.common.models import BaseModel, db
+from api.common.utils import generate_id
 
 
 class Booking(BaseModel):
@@ -12,7 +11,7 @@ class Booking(BaseModel):
         db.String(80),
         nullable=False,
         primary_key=True,
-        default=str(uuid.uuid4())
+        default=generate_id
     )
     flight_id = db.Column(db.String(50), db.ForeignKey('flight.id'))
     flight = db.relationship('Flight')

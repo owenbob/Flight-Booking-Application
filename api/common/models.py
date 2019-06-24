@@ -1,11 +1,10 @@
 """Application Parent Model."""
-import uuid
 
 from flask_sqlalchemy import SQLAlchemy
 
 from api import app
 
-from api.common.utils import time_utility
+from api.common.utils import time_utility, generate_id
 
 # Wrap app in ORM
 db = SQLAlchemy(app)
@@ -18,10 +17,10 @@ class BaseModel(db.Model):
         db.String(80),
         nullable=False,
         primary_key=True,
-        default=str(uuid.uuid4())
+        default=generate_id
     )
-    created_at = db.Column(db.DateTime, nullable=False, default=time_utility())
-    updated_at = db.Column(db.DateTime, nullable=False, default=time_utility(), onupdate=time_utility())  # noqa: E501
+    created_at = db.Column(db.DateTime, nullable=False, default=time_utility)
+    updated_at = db.Column(db.DateTime, nullable=False, default=time_utility, onupdate=time_utility)  # noqa: E501
 
     def save(self, obj):
         """Method to save values to the database."""

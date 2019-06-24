@@ -1,12 +1,11 @@
 """ User models module."""
 import re
-import uuid
 
 from sqlalchemy.orm import validates
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from api.common.models import BaseModel, db
-from api.common.utils import validate_entity
+from api.common.utils import validate_entity, generate_id
 
 
 class Users(BaseModel):
@@ -17,7 +16,7 @@ class Users(BaseModel):
         db.String(80),
         nullable=False,
         primary_key=True,
-        default=str(uuid.uuid4())
+        default=generate_id
     )
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
